@@ -1,0 +1,123 @@
+import { Component, ViewChild, ElementRef, AfterViewChecked } from '@angular/core';
+import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+
+// Angular Material modules
+import { MatCardModule } from '@angular/material/card';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+
+import { ChatService } from '../services/chat.service';
+
+import { TextFieldModule } from '@angular/cdk/text-field';
+
+interface Message {
+  role: 'assistant' | 'user';
+  content: string;
+}
+
+@Component({
+  selector: 'app-chat',
+  standalone: true,
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    MatCardModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatButtonModule,
+    MatProgressSpinnerModule,
+    TextFieldModule  
+  ],
+  templateUrl: './chat.component.html',
+  styleUrls: ['./chat.component.css']
+})
+export class ChatComponent implements AfterViewChecked {
+  chatForm: FormGroup;
+  messages: Message[] = [];
+  loading: boolean = false;
+
+  // Reference to the messages container element
+  @ViewChild('messagesContainer') private messagesContainer!: ElementRef;
+
+  constructor(private fb: FormBuilder, private chatService: ChatService) {
+    // Start with the default assistant prompt.
+    this.messages.push({ role: 'assistant', content: 'Hi, what’s your first and last name?' });
+    this.chatForm = this.fb.group({
+      userMessage: ['', [Validators.required, Validators.maxLength(200)]]
+    });
+  }
+
+  ngAfterViewChecked(): void {
+    // Scroll to the bottom every time the view has been updated
+    this.scrollToBottom();
+  }
+
+  private scrollToBottom(): void {
+    try {
+      this.messagesContainer.nativeElement.scrollTop = this.messagesContainer.nativeElement.scrollHeight;
+    } catch (err) {
+      console.error('Error scrolling:', err);
+    }
+  }
+
+  sendMessage(): void {
+    if (this.chatForm.invalid) return;
+    const userMessage = this.chatForm.value.userMessage.trim();
+    if (!userMessage) return;
+
+    // Append the user's message.
+    this.messages.push({ role: 'user', content: userMessage });
+    this.chatForm.reset();
+
+    // Build the payload with the conversation history.
+    const payload = {
+      input: {
+        prompt: this.messages,
+        sampling_params: {
+          max_tokens: 4096,
+          temperature: 0.7,
+          top_p: 1,
+          stop: [ "<|eot_id|>", "</s>" ]
+        }
+      }
+    };
+
+    this.loading = true;
+    this.chatService.sendChat(payload).subscribe({
+      next: (response) => {
+        const tokens = response?.output?.[0]?.choices?.[0]?.tokens;
+        if (tokens && tokens.length > 0) {
+          this.messages.push({ role: 'assistant', content: tokens.join(' ') });
+        }
+        this.loading = false;
+      },
+      error: (error) => {
+        console.error('Error sending message:', error);
+        this.loading = false;
+      }
+    });
+  }
+
+  copyConversation(): void {
+    // Format each message with a label.
+    const conversationText = this.messages
+      .map(message => {
+        const label = message.role === 'assistant' ? 'Assistant' : 'User';
+        return `${label}: ${message.content}`;
+      })
+      .join('\n');
+      
+    // Use the Clipboard API to copy the text.
+    navigator.clipboard.writeText(conversationText)
+      .then(() => {
+        // Optionally, show feedback to the user (toast, snackbar, etc.)
+        console.log('Conversation copied to clipboard!');
+      })
+      .catch(err => {
+        console.error('Failed to copy: ', err);
+      });
+  }
+}

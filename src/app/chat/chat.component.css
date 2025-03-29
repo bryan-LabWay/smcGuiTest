@@ -1,0 +1,151 @@
+/* The fixed header always stays at the top */
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 60px; /* Example header height */
+  background-color: #0d3c34; 
+  color: #fff;
+  display: flex;
+  align-items: center;
+  padding: 0 1rem;
+  z-index: 9999;
+}
+
+/* 
+  Overall container:
+  - Centered horizontally
+  - Uses flex column layout to pin the input at the bottom
+*/
+.chat-container {
+  /* Push the chat content below the header's height */
+  margin-top: 60px; 
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+  height: calc(100vh - 2rem - 60px);
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  background: #fafafa;
+  overflow: hidden;
+}
+
+/* Make the .messages container scrollable,
+   but reduce or remove the right padding. */
+   .messages {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+  
+    /* 
+      If you want the user bubble completely flush,
+      remove the right padding or set it to a smaller value:
+    */
+    padding: 1rem 0 1rem 1rem; 
+    gap: 0.5rem;
+  }
+
+/* 
+  Common message bubble styling
+  - Rounded corners
+  - Box shadow for a slight “bubble” effect
+*/
+.message {
+  padding: 0.75rem 1rem;
+  margin: 0.5rem 0;
+  border-radius: 12px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  max-width: 70%;
+  word-wrap: break-word;
+  font-size: 1rem;
+  line-height: 1.4;
+  display: block;             /* ensures align-self works in flex container */
+  width: fit-content;         /* auto-size to content (modern browsers) */
+  max-width: 80%;
+}
+
+/* Assistant bubble on the left */
+.assistant {
+  align-self: flex-start;
+  background-color: #e1f5fe;
+  border-top-left-radius: 0;
+}
+
+/* User bubble on the right, flush to the edge */
+.user {
+  align-self: flex-end;
+  background-color: #c8e6c9;
+  border-top-right-radius: 0;
+
+  /*
+    Force the bubble to sit at the far right.
+    margin-left: auto pushes it away from the left side,
+    margin-right: 0 ensures it doesn’t add extra spacing on the right.
+  */
+  margin-left: auto;
+  margin-right: 0;
+  text-align: right;
+}
+
+/*
+  Loading container for spinner + text 
+  (optional if using a spinner from Angular Material)
+*/
+.loading-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 1rem 0;
+}
+
+.loading-text {
+  margin-left: 0.5rem;
+  font-style: italic;
+  color: #555;
+}
+
+/*
+  Form area (input + send button):
+  - Anchored at bottom
+  - Simple horizontal layout
+*/
+.chat-form {
+  display: flex;
+  align-items: center;
+  padding: 0.75rem 1rem;
+  border-top: 1px solid #e0e0e0;
+  background: #fff;
+}
+
+/*
+  If using Material’s mat-form-field, you can style it here.
+  Otherwise, a standard <input> can also be styled similarly.
+*/
+.input-field {
+  flex: 1;
+  margin-right: 0.5rem;
+  min-width: 0; /* ensures the field shrinks if needed */
+}
+
+textarea[matInput] {
+  resize: none; /* disables manual resizing if desired */
+  font-size: 1rem;
+}
+
+mat-form-field.input-field {
+  width: 100%;
+}
+
+.button-send {
+  white-space: nowrap;
+}
+
+.copy-cta {
+  text-align: center;
+  margin: 0.5rem 0;
+}
