@@ -40,6 +40,9 @@ interface Message {
 })
 export class ChatComponent implements AfterViewChecked {
 
+  // stores conversation history for each model
+  modelConversations: { [modelName: string]: Message[] } = {};
+
   modelOptions = [
     { name: 'v0.01', apiUrl: environment.apiUrlMain},
     { name: '16 Steps Fine-tuned', apiUrl: environment.apiUrl16Steps},
@@ -104,6 +107,9 @@ export class ChatComponent implements AfterViewChecked {
         if (tokens && tokens.length > 0) {
           this.messages.push({ role: 'assistant', content: tokens.join(' ') });
         }
+
+        this.modelConversations[this.selectedModel.name] = [...this.messages];
+        
         this.loading = false;
       },
       error: (error) => {
@@ -131,5 +137,21 @@ export class ChatComponent implements AfterViewChecked {
       .catch(err => {
         console.error('Failed to copy: ', err);
       });
+  }
+
+  onModelChange(): void {
+    const modelName = this.selectedModel.name;
+  
+    if (this.modelConversations[modelName]) {
+      // If we already have conversation for this model, restore it
+      this.messages = [...this.modelConversations[modelName]];
+    } else {
+      // First time selecting this model
+      this.messages = [
+        { role: 'assistant', content: 'Hi, what’s your first and last name?' }
+      ];
+      // Save it immediately
+      this.modelConversations[modelName] = [...this.messages];
+    }
   }
 }

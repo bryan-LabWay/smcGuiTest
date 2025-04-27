@@ -8,7 +8,11 @@
   <div class="left-panel">
     <mat-form-field appearance="outline" class="model-selector">
       <mat-label>Choose Model</mat-label>
-      <mat-select [(ngModel)]="selectedModel" [ngModelOptions]="{standalone: true}">
+      <mat-select 
+        [(ngModel)]="selectedModel" 
+        [ngModelOptions]="{standalone: true}"
+        (selectionChange)="onModelChange()"
+        >
         <mat-option *ngFor="let model of modelOptions" [value]="model">
           {{ model.name }}
         </mat-option>
