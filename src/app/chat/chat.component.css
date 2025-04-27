@@ -26,6 +26,7 @@
   margin-right: auto;
   height: calc(100vh - 2rem - 60px);
   display: flex;
+  flex: 1; /* chat should take the remaining space */
   flex-direction: column;
   border: 1px solid #e0e0e0;
   border-radius: 8px;
@@ -148,4 +149,37 @@ mat-form-field.input-field {
 .copy-cta {
   text-align: center;
   margin: 0.5rem 0;
+}
+
+.model-selector {
+  width: 250px;
+  margin: 24px auto 16px auto; /* still control general spacing */
+  display: block;
+}
+
+.model-selector .mat-form-field-wrapper {
+  padding-bottom: 0px; /* removes bottom space */
+}
+
+.model-selector .mat-form-field-flex {
+  margin-top: 0px; /* removes top space */
+  padding-top: 0px;
+  padding-bottom: 0px;
+}
+
+.model-selector .mat-form-field-infix {
+  padding: 8px 0; /* optional: control vertical spacing inside */
+}
+
+.main-container {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 24px;
+  gap: 24px; /* spacing between selector and chat */
+}
+
+.left-panel {
+  width: 250px; /* or whatever size you want for model selector panel */
+  margin-top: 48px;
 }

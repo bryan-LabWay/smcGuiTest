@@ -1,51 +1,70 @@
 <!-- Optional top navbar or header -->
 <div class="header">
-  LABWay.ai v0.01 
+  LABWay.ai
 </div>
 
-<div class="chat-container">
-  <div class="messages" #messagesContainer>
-    <div *ngFor="let message of messages">
-      <mat-card
-        class="message"
-        [ngClass]="{'assistant': message.role === 'assistant', 'user': message.role === 'user'}">
-        <span class="content">{{ message.content }}</span>
-      </mat-card>
-    </div>
+<div class="main-container">
 
-    <!-- Loading indicator (if using Material spinner) -->
-    <div *ngIf="loading" class="loading-container">
-      <mat-progress-spinner mode="indeterminate" diameter="30"></mat-progress-spinner>
-      <span class="loading-text">SMC is thinking...</span>
-    </div>
-  </div>
-
-  <form [formGroup]="chatForm" (ngSubmit)="sendMessage()" class="chat-form">
-    <!-- Angular Material form field -->
-    <mat-form-field class="input-field" appearance="fill">
-      <mat-label>Type your message...</mat-label>
-      <textarea
-        matInput
-        formControlName="userMessage"
-        cdkTextareaAutosize
-        cdkAutosizeMinRows="1"
-        cdkAutosizeMaxRows="10"
-        placeholder="Type your message..."
-        autocomplete="off">
-      </textarea>
+  <div class="left-panel">
+    <mat-form-field appearance="outline" class="model-selector">
+      <mat-label>Choose Model</mat-label>
+      <mat-select 
+        [(ngModel)]="selectedModel" 
+        [ngModelOptions]="{standalone: true}"
+        (selectionChange)="onModelChange()"
+        >
+        <mat-option *ngFor="let model of modelOptions" [value]="model">
+          {{ model.name }}
+        </mat-option>
+      </mat-select>
     </mat-form-field>
-
-    <button mat-raised-button color="primary" type="submit"
-            class="button-send"
-            [disabled]="chatForm.invalid || loading">
-      Send
-    </button>
-
-     <!-- CTA button to copy conversation -->
-  <div class="copy-cta">
-    <button mat-raised-button color="accent" (click)="copyConversation()">
-      Copy Conversation
-    </button>
   </div>
-  </form>
+
+  <div class="chat-container">
+    <div class="messages" #messagesContainer>
+      <div *ngFor="let message of messages">
+        <mat-card
+          class="message"
+          [ngClass]="{'assistant': message.role === 'assistant', 'user': message.role === 'user'}">
+          <span class="content">{{ message.content }}</span>
+        </mat-card>
+      </div>
+  
+      <!-- Loading indicator (if using Material spinner) -->
+      <div *ngIf="loading" class="loading-container">
+        <mat-progress-spinner mode="indeterminate" diameter="30"></mat-progress-spinner>
+        <span class="loading-text">SMC is thinking...</span>
+      </div>
+    </div>
+  
+    <form [formGroup]="chatForm" (ngSubmit)="sendMessage()" class="chat-form">
+      <!-- Angular Material form field -->
+      <mat-form-field class="input-field" appearance="fill">
+        <mat-label>Type your message...</mat-label>
+        <textarea
+          matInput
+          formControlName="userMessage"
+          cdkTextareaAutosize
+          cdkAutosizeMinRows="1"
+          cdkAutosizeMaxRows="10"
+          placeholder="Type your message..."
+          autocomplete="off">
+        </textarea>
+      </mat-form-field>
+  
+      <button mat-raised-button color="primary" type="submit"
+              class="button-send"
+              [disabled]="chatForm.invalid || loading">
+        Send
+      </button>
+  
+       <!-- CTA button to copy conversation -->
+    <div class="copy-cta">
+      <button mat-raised-button color="accent" (click)="copyConversation()">
+        Copy Conversation
+      </button>
+    </div>
+    </form>
+  </div>
+  
 </div>
