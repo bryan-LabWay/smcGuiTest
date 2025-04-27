@@ -8,12 +8,11 @@ import { environment } from '../../environments/environment';
   providedIn: 'root'
 })
 export class ChatService {
-  private apiUrl = environment.apiUrl;
-  private apiKey = environment.apiKey;
+  private apiKey = environment.apiKeyMain;
 
   constructor(private http: HttpClient) {}
 
-  sendChat(payload: any): Observable<any> {
+  sendChat(payload: any, apiUrl: string): Observable<any> {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${this.apiKey}`
@@ -23,12 +22,12 @@ export class ChatService {
     const startTime = Date.now();
 
     // First, call the /run endpoint.
-    return this.http.post<any>(`${this.apiUrl}/run`, payload, { headers }).pipe(
+    return this.http.post<any>(`${apiUrl}/run`, payload, { headers }).pipe(
       switchMap(runResponse => {
         const jobId = runResponse.id;
         // Poll the /status/{job_id} endpoint every 2 seconds.
         return timer(0, 2000).pipe(
-          switchMap(() => this.http.get<any>(`${this.apiUrl}/status/${jobId}`, { headers })),
+          switchMap(() => this.http.get<any>(`${apiUrl}/status/${jobId}`, { headers })),
           // Filter out responses that are empty or do not contain the expected output.
           filter(statusResponse => statusResponse && statusResponse.output && statusResponse.output.length > 0),
           // Continue polling until the job status is COMPLETED.

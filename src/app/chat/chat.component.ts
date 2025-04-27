@@ -1,5 +1,5 @@
 import { Component, ViewChild, ElementRef, AfterViewChecked } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, ReactiveFormsModule, FormsModule  } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
 // Angular Material modules
@@ -8,10 +8,12 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatSelectModule } from '@angular/material/select';
 
 import { ChatService } from '../services/chat.service';
 
 import { TextFieldModule } from '@angular/cdk/text-field';
+import { environment } from '../../environments/environment';
 
 interface Message {
   role: 'assistant' | 'user';
@@ -29,12 +31,22 @@ interface Message {
     MatInputModule,
     MatButtonModule,
     MatProgressSpinnerModule,
-    TextFieldModule  
+    TextFieldModule,
+    MatSelectModule,
+    FormsModule 
   ],
   templateUrl: './chat.component.html',
   styleUrls: ['./chat.component.css']
 })
 export class ChatComponent implements AfterViewChecked {
+
+  modelOptions = [
+    { name: 'v0.01', apiUrl: environment.apiUrlMain},
+    { name: '16 Steps Fine-tuned', apiUrl: environment.apiUrl16Steps},
+    { name: '3 Epochs Fine-tuned', apiUrl: environment.apiUrl3Epochs}
+  ]
+  selectedModel = this.modelOptions[0]; //default to first model
+
   chatForm: FormGroup;
   messages: Message[] = [];
   loading: boolean = false;
@@ -46,7 +58,7 @@ export class ChatComponent implements AfterViewChecked {
     // Start with the default assistant prompt.
     this.messages.push({ role: 'assistant', content: 'Hi, what’s your first and last name?' });
     this.chatForm = this.fb.group({
-      userMessage: ['', [Validators.required, Validators.maxLength(200)]]
+      userMessage: ['', [Validators.required, Validators.maxLength(500)]]
     });
   }
 
@@ -86,7 +98,7 @@ export class ChatComponent implements AfterViewChecked {
     };
 
     this.loading = true;
-    this.chatService.sendChat(payload).subscribe({
+    this.chatService.sendChat(payload, this.selectedModel.apiUrl).subscribe({
       next: (response) => {
         const tokens = response?.output?.[0]?.choices?.[0]?.tokens;
         if (tokens && tokens.length > 0) {
