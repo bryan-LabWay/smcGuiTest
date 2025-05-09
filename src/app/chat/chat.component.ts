@@ -45,8 +45,10 @@ export class ChatComponent implements AfterViewChecked {
 
   modelOptions = [
     { name: 'v0.01', apiUrl: environment.apiUrlMain},
-    { name: '16 Steps Fine-tuned', apiUrl: environment.apiUrl16Steps},
-    { name: '3 Epochs Fine-tuned', apiUrl: environment.apiUrl3Epochs}
+    { name: '3 Epochs - v0.01', apiUrl: environment.apiUrl3Epochs},
+    { name: '6 Epochs - v0.01', apiUrl: environment.apiUrl6Epochs},
+    { name: '9 Epochs - v0.01', apiUrl: environment.apiUrl9Epochs},
+    { name: '18 Epochs - v0.01', apiUrl: environment.apiUrl18Epochs}
   ]
   selectedModel = this.modelOptions[0]; //default to first model
 
