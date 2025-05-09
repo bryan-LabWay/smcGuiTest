@@ -17,11 +17,10 @@ const envFileContent = `export const environment = {
   production: true,
   apiUrlMain: '${apiUrl_main}',
   apiKeyMain: '${apiKey_main}',
-  apiUrl3Epochs: '${apiUrl_3Epochs}'
-  apiUrl6Epochs: '${apiUrl_6Epochs}'
-  apiUrl9Epochs: '${apiUrl_9Epochs}'
+  apiUrl3Epochs: '${apiUrl_3Epochs}',
+  apiUrl6Epochs: '${apiUrl_6Epochs}',
+  apiUrl9Epochs: '${apiUrl_9Epochs}',
   apiUrl18Epochs: '${apiUrl_18Epochs}'
-
 };
 `;
 
