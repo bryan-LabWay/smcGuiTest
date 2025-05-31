@@ -5,22 +5,24 @@ const { join } = require('path');
 const envProdFilePath = join(__dirname, 'src', 'environments', 'environment.ts');
 
 // Get the environment variables from process.env
-const apiUrl_main = process.env.API_URL_MAIN;
+const apiUrl_main = process.env.API_URL_v0_01;
 const apiKey_main = process.env.API_KEY_MAIN;
-const apiUrl_3Epochs = process.env.API_URL_3EPOCHS;
-const apiUrl_6Epochs = process.env.API_URL_6EPOCHS;
-const apiUrl_9Epochs = process.env.API_URL_9EPOCHS;
-const apiUrl_18Epochs = process.env.API_URL_18EPOCHS;
+const apiUrl_v01_r_8 = process.env.API_URL_v01_R_8;
+const apiUrl_v01_r_16 = process.env.API_URL_v01_R_16;
+const apiUrl_v01_r_32 = process.env.API_URL_v01_R_32;
+const apiUrl_v01_r_64 = process.env.API_URL_v01_R_64;
+const apiUrl_v01_cl_p1 = process.env.API_URL_v01_CL_P1;
 
 // Build the content of environment.prod.ts
 const envFileContent = `export const environment = {
   production: true,
   apiUrlMain: '${apiUrl_main}',
   apiKeyMain: '${apiKey_main}',
-  apiUrl3Epochs: '${apiUrl_3Epochs}',
-  apiUrl6Epochs: '${apiUrl_6Epochs}',
-  apiUrl9Epochs: '${apiUrl_9Epochs}',
-  apiUrl18Epochs: '${apiUrl_18Epochs}'
+  apiUrlv01R8: '${apiUrl_v01_r_8}',
+  apiUrlv01R16: '${apiUrl_v01_r_16}',
+  apiUrlv01R32: '${apiUrl_v01_r_32}',
+  apiUrlv01R64: '${apiUrl_v01_r_64}',
+  apiUrlv01ClP1: '${apiUrl_v01_cl_p1}'
 };
 `;
 
