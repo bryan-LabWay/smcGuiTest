@@ -12,6 +12,8 @@ const apiUrl_v01_r_16 = process.env.API_URL_v01_R_16;
 const apiUrl_v01_r_32 = process.env.API_URL_v01_R_32;
 const apiUrl_v01_r_64 = process.env.API_URL_v01_R_64;
 const apiUrl_v01_cl_p1 = process.env.API_URL_v01_CL_P1;
+const apiUrl_v01_cl_p2 = process.env.API_URL_v01_CL_P2;
+const apiUrl_v01_cl_p3 = process.env.API_URL_v01_CL_P3;
 
 // Build the content of environment.prod.ts
 const envFileContent = `export const environment = {
@@ -22,7 +24,9 @@ const envFileContent = `export const environment = {
   apiUrlv01R16: '${apiUrl_v01_r_16}',
   apiUrlv01R32: '${apiUrl_v01_r_32}',
   apiUrlv01R64: '${apiUrl_v01_r_64}',
-  apiUrlv01ClP1: '${apiUrl_v01_cl_p1}'
+  apiUrlv01ClP1: '${apiUrl_v01_cl_p1}',
+  apiUrlv01ClP2: '${apiUrl_v01_cl_p2}',
+  apiUrlv01ClP3: '${apiUrl_v01_cl_p3}',
 };
 `;
 
