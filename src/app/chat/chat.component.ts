@@ -48,6 +48,8 @@ export class ChatComponent implements AfterViewChecked {
     { name: 'CL-P1', apiUrl: environment.apiUrlv01ClP1},
     { name: 'CL-P2', apiUrl: environment.apiUrlv01ClP2},
     { name: 'CL-P3', apiUrl: environment.apiUrlv01ClP3},
+    { name: 'CL-P4', apiUrl: environment.apiUrlv01ClP4},
+    { name: 'CL-P5', apiUrl: environment.apiUrlv01ClP5},
     { name: '16E-8Lora_R', apiUrl: environment.apiUrlv01R8},
     { name: '16E-16Lora_R', apiUrl: environment.apiUrlv01R16},
     { name: '16E-32Lora_R', apiUrl: environment.apiUrlv01R32},
