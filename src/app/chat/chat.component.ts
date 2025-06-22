@@ -45,6 +45,7 @@ export class ChatComponent implements AfterViewChecked {
 
   modelOptions = [
     { name: 'v0.01', apiUrl: environment.apiUrlMain},
+    { name: 'v0.02', apiUrl: environment.apiUrlv02},
     { name: 'CL-P1', apiUrl: environment.apiUrlv01ClP1},
     { name: 'CL-P2', apiUrl: environment.apiUrlv01ClP2},
     { name: 'CL-P3', apiUrl: environment.apiUrlv01ClP3},
