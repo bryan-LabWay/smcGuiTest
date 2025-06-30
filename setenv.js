@@ -32,7 +32,7 @@ const envFileContent = `export const environment = {
   apiUrlv01ClP4: '${apiUrl_v01_cl_p4}',
   apiUrlv01ClP5: '${apiUrl_v01_cl_p5}',
   apiUrlv02: '${apiUrl_v02}',
-  apiUrlv02: '${apiUrl_v021}',
+  apiUrlv021: '${apiUrl_v021}',
 };
 `;
 
