@@ -25,8 +25,8 @@ const envFileContent = `export const environment = {
   apiUrlv021: '${apiUrl_v021}',
   apiUrlv0215E5: '${apiUrl_v021_5e_5}',
   apiUrlv022: '${apiUrl_v022}',
-  apiUrlv022: '${apiUrl_v022R}',
-  apiUrlv022: '${apiUrl_v022B}'
+  apiUrlv022R: '${apiUrl_v022R}',
+  apiUrlv022B: '${apiUrl_v022B}'
 };
 `;
 
