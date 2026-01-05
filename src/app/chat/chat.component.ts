@@ -1,5 +1,5 @@
 import { Component, ViewChild, ElementRef, AfterViewChecked } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, ReactiveFormsModule, FormsModule  } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, `ReactiveFormsModule`, FormsModule  } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
 // Angular Material modules
@@ -14,6 +14,9 @@ import { ChatService } from '../services/chat.service';
 
 import { TextFieldModule } from '@angular/cdk/text-field';
 import { environment } from '../../environments/environment';
+
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatIconModule } from '@angular/material/icon';
 
 interface Message {
   role: 'assistant' | 'user';
@@ -33,7 +36,9 @@ interface Message {
     MatProgressSpinnerModule,
     TextFieldModule,
     MatSelectModule,
-    FormsModule 
+    FormsModule,
+    MatTooltipModule,
+    MatIconModule,
   ],
   templateUrl: './chat.component.html',
   styleUrls: ['./chat.component.css']

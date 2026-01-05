@@ -21,22 +21,72 @@
 
     <!-- Sampling Parameters -->
     <div class="sampling-panel" [formGroup]="paramsForm">
-      <h4 class="sampling-title">Sampling Parameters</h4>
+      <h4 class="sampling-title">Inference Parameters</h4>
 
       <mat-form-field appearance="outline" class="sampling-field">
-        <mat-label>max_tokens</mat-label>
-        <input matInput type="number" formControlName="max_tokens" min="1" step="1" />
+        <mat-label>
+          max_tokens
+          <mat-icon
+            class="info-icon"
+            matTooltip="Maximum number of tokens the model can generate in a single response. Higher values allow longer answers but cost more tokens."
+            matTooltipPosition="right"
+          >
+            info
+          </mat-icon>
+        </mat-label>
+
+        <input
+          matInput
+          type="number"
+          formControlName="max_tokens"
+          min="1"
+          step="1"
+        />
       </mat-form-field>
 
       <mat-form-field appearance="outline" class="sampling-field">
-        <mat-label>temperature</mat-label>
-        <input matInput type="number" formControlName="temperature" min="0" step="0.1" />
+        <mat-label>
+          temperature
+          <mat-icon
+            class="info-icon"
+            matTooltip="Controls randomness. Lower values make outputs more deterministic, higher values increase creativity."
+            matTooltipPosition="right"
+          >
+            info
+          </mat-icon>
+        </mat-label>
+
+        <input
+          matInput
+          type="number"
+          formControlName="temperature"
+          min="0"
+          step="0.1"
+        />
       </mat-form-field>
 
       <mat-form-field appearance="outline" class="sampling-field">
-        <mat-label>top_p</mat-label>
-        <input matInput type="number" formControlName="top_p" min="0" max="1" step="0.05" />
+        <mat-label>
+          top_p
+          <mat-icon
+            class="info-icon"
+            matTooltip="A higher top_p gives the model more choices, leading to more varied and creative text. A lower top_p limits the model to only the most predictable, safe choices, making the output more focused and consistent." 
+            matTooltipPosition="right"
+          >
+            info
+          </mat-icon>
+        </mat-label>
+
+        <input
+          matInput
+          type="number"
+          formControlName="top_p"
+          min="0"
+          max="1"
+          step="0.05"
+        />
       </mat-form-field>
+
 
       <button
         *ngIf="paramsDirty"
