@@ -1,5 +1,5 @@
 import { Component, ViewChild, ElementRef, AfterViewChecked } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, `ReactiveFormsModule`, FormsModule  } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, ReactiveFormsModule, FormsModule  } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
 // Angular Material modules
@@ -38,7 +38,7 @@ interface Message {
     MatSelectModule,
     FormsModule,
     MatTooltipModule,
-    MatIconModule,
+    MatIconModule
   ],
   templateUrl: './chat.component.html',
   styleUrls: ['./chat.component.css']
