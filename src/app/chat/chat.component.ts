@@ -59,6 +59,16 @@ export class ChatComponent implements AfterViewChecked {
   messages: Message[] = [];
   loading: boolean = false;
 
+  paramsForm: FormGroup;
+
+  private savedSamplingParams = {
+    max_tokens: 4096,
+    temperature: 0.7,
+    top_p: 1,
+  };
+
+  paramsDirty = false;
+
   // Reference to the messages container element
   @ViewChild('messagesContainer') private messagesContainer!: ElementRef;
 
@@ -68,6 +78,17 @@ export class ChatComponent implements AfterViewChecked {
     this.chatForm = this.fb.group({
       userMessage: ['', [Validators.required, Validators.maxLength(500)]]
     });
+
+    this.paramsForm = this.fb.group({
+    max_tokens: [4096, [Validators.required, Validators.min(1)]],
+    temperature: [0.7, [Validators.required, Validators.min(0)]],
+    top_p: [1, [Validators.required, Validators.min(0), Validators.max(1)]],
+  });
+
+  this.paramsForm.valueChanges.subscribe(() => {
+    this.paramsDirty = this.isParamsDirty();
+  });
+
   }
 
   ngAfterViewChecked(): void {
@@ -159,4 +180,38 @@ export class ChatComponent implements AfterViewChecked {
       this.modelConversations[modelName] = [...this.messages];
     }
   }
+
+  private isParamsDirty(): boolean {
+  const v = this.paramsForm.getRawValue();
+  return (
+    Number(v.max_tokens) !== this.savedSamplingParams.max_tokens ||
+    Number(v.temperature) !== this.savedSamplingParams.temperature ||
+    Number(v.top_p) !== this.savedSamplingParams.top_p
+  );
+}
+
+  saveParamsAndRestart(): void {
+    if (this.paramsForm.invalid) return;
+
+    const v = this.paramsForm.getRawValue();
+
+    // Persist saved params
+    this.savedSamplingParams = {
+      max_tokens: Number(v.max_tokens),
+      temperature: Number(v.temperature),
+      top_p: Number(v.top_p),
+    };
+
+    // Restart conversation for CURRENT selected model
+    const freshConversation: Message[] = [
+      { role: 'assistant', content: 'Hi, what’s your first and last name?' }
+    ];
+
+    this.messages = [...freshConversation];
+    this.modelConversations[this.selectedModel.name] = [...freshConversation];
+
+    // Hide button again
+    this.paramsDirty = false;
+  }
+
 }
