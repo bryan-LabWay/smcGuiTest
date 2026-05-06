@@ -49,6 +49,7 @@ export class ChatComponent implements AfterViewChecked {
   modelConversations: { [modelName: string]: Message[] } = {};
 
   modelOptions = [
+    { name: 'v0.041-R1f', apiUrl: environment.apiUrlv041_R1f},
     { name: 'v0.041-R1e', apiUrl: environment.apiUrlv041_R1e},
     { name: 'v0.042', apiUrl: environment.apiUrlv042},
     { name: 'v0.041', apiUrl: environment.apiUrlv041},
@@ -56,13 +57,7 @@ export class ChatComponent implements AfterViewChecked {
     { name: 'v0.041-R1b', apiUrl: environment.apiUrlv041_R1b},
     { name: 'v0.041-R1c', apiUrl: environment.apiUrlv041_R1c},
     { name: 'v0.041-R1d', apiUrl: environment.apiUrlv041_R1d},
-    { name: 'v0.04', apiUrl: environment.apiUrlv04},
-    { name: 'v0.03', apiUrl: environment.apiUrlv03},
-    { name: 'v0.01', apiUrl: environment.apiUrlMain},
-    { name: 'v0.02', apiUrl: environment.apiUrlv02},
-    { name: 'v0.021', apiUrl: environment.apiUrlv021},
-    { name: 'v0.021_5e-5', apiUrl: environment.apiUrlv021_5e_5},
-    { name: 'v0.022B', apiUrl: environment.apiUrlv022B}
+    { name: 'v0.04', apiUrl: environment.apiUrlv04}
   ]
   selectedModel = this.modelOptions[0]; //default to first model
 
