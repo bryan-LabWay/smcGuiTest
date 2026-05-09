@@ -43,9 +43,9 @@ const envFileContent = `export const environment = {
   apiUrlv041_R1d: '${apiUrl_v041R1d}',
   apiUrlv042: '${apiUrl_v042}',
   apiUrlv041_R1e: '${apiUrl_v041R1e}',
-  apiUrlv041_R1f: '${apiUrl_v041R1f}',,
-  apiUrlv041_R1e: '${apiUrl_v041R1g}',
-  apiUrlv041_R1f: '${apiUrl_v041R1h}',
+  apiUrlv041_R1f: '${apiUrl_v041R1f}',
+  apiUrlv041_R1g: '${apiUrl_v041R1g}',
+  apiUrlv041_R1h: '${apiUrl_v041R1h}',
 };
 `;
 
