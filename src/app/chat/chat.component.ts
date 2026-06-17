@@ -49,6 +49,10 @@ export class ChatComponent implements AfterViewChecked {
   modelConversations: { [modelName: string]: Message[] } = {};
 
   modelOptions = [
+    { name: 'd/40/10/4.5e-4', apiUrl: environment.apiUrld_d_40_10_4_5e4},
+    { name: 'g/20/10/3.6-4', apiUrl: environment.apiUrld_g_20_10_3_6e4},
+    { name: 'd/40/12/5e-5', apiUrl: environment.apiUrld_d_40_12_5e5},
+    { name: 'g/20/12/5e-5', apiUrl: environment.apiUrld_g_20_12_5e5},
     { name: 'v0.041.1', apiUrl: environment.apiUrlv041_1},
     { name: 'v0.041.2', apiUrl: environment.apiUrlv041_2},
     { name: 'v0.041-R1h', apiUrl: environment.apiUrlv041_R1h},
