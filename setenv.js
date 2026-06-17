@@ -25,10 +25,10 @@ const apiUrl_v041R1g = process.env.API_URL_v0_041_R1G;
 const apiUrl_v041R1h = process.env.API_URL_v0_041_R1H;
 const apiUrl_v041_1 = process.env.API_URL_v0_041_1;
 const apiUrl_v041_2 = process.env.API_URL_v0_041_2;
-const apiUrl_d_40_10_4_5e4 = process.env.API_URL_D_40_10_4_5e-4;
-const apiUrl_g_20_10_3_6e4 = process.env.API_URL_G_20_10_3_6e-4;
-const apiUrl_d_40_12_5e5 = process.env.API_URL_D_40_12_5e-5;
-const apiUrl_g_20_12_5e5 = process.env.API_URL_G_20_12_5e-5;
+const apiUrl_d_40_10_4_5e4 = process.env.API_URL_D_40_10_4_5e_4;
+const apiUrl_g_20_10_3_6e4 = process.env.API_URL_G_20_10_3_6e_4;
+const apiUrl_d_40_12_5e5 = process.env.API_URL_D_40_12_5e_5;
+const apiUrl_g_20_12_5e5 = process.env.API_URL_G_20_12_5e_5;
 
 
 // Build the content of environment.prod.ts
