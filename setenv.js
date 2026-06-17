@@ -25,6 +25,10 @@ const apiUrl_v041R1g = process.env.API_URL_v0_041_R1G;
 const apiUrl_v041R1h = process.env.API_URL_v0_041_R1H;
 const apiUrl_v041_1 = process.env.API_URL_v0_041_1;
 const apiUrl_v041_2 = process.env.API_URL_v0_041_2;
+const apiUrl_d_40_10_4_5e4 = process.env.API_URL_D_40_10_4_5e-4;
+const apiUrl_g_20_10_3_6e4 = process.env.API_URL_G_20_10_3_6e-4;
+const apiUrl_d_40_12_5e5 = process.env.API_URL_D_40_12_5e-5;
+const apiUrl_g_20_12_5e5 = process.env.API_URL_G_20_12_5e-5;
 
 
 // Build the content of environment.prod.ts
@@ -50,6 +54,10 @@ const envFileContent = `export const environment = {
   apiUrlv041_R1h: '${apiUrl_v041R1h}',
   apiUrlv041_1: '${apiUrl_v041_1}',
   apiUrlv041_2: '${apiUrl_v041_2}',
+  apiUrld_d_40_10_4_5e4: '${apiUrl_d_40_10_4_5e4}',
+  apiUrld_g_20_10_3_6e4: '${apiUrl_g_20_10_3_6e4}',
+  apiUrld_d_40_12_5e5: '${apiUrl_d_40_12_5e5}',
+  apiUrld_g_20_12_5e5: '${apiUrl_g_20_12_5e5}',
 };
 `;
 
