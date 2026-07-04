@@ -49,25 +49,14 @@ export class ChatComponent implements AfterViewChecked {
   modelConversations: { [modelName: string]: Message[] } = {};
 
   modelOptions = [
+    { name: 'g/20/16/3.6-4', apiUrl: environment.apiUrld_g_20_16_3_6e4},
+    { name: 'd/40/60/4.5e-4', apiUrl: environment.apiUrld_d_40_60_5e5},
     { name: 'd/40/10/4.5e-4', apiUrl: environment.apiUrld_d_40_10_4_5e4},
     { name: 'g/20/10/3.6-4', apiUrl: environment.apiUrld_g_20_10_3_6e4},
     { name: 'd/40/12/5e-5', apiUrl: environment.apiUrld_d_40_12_5e5},
     { name: 'g/20/12/5e-5', apiUrl: environment.apiUrld_g_20_12_5e5},
     { name: 'd/40/16/5e-5', apiUrl: environment.apiUrld_d_40_16_5e5},
-    { name: 'g/20/16/5e-5', apiUrl: environment.apiUrld_g_20_16_5e5},
-    { name: 'v0.041.1', apiUrl: environment.apiUrlv041_1},
-    { name: 'v0.041.2', apiUrl: environment.apiUrlv041_2},
-    { name: 'v0.041-R1h', apiUrl: environment.apiUrlv041_R1h},
-    { name: 'v0.041-R1g', apiUrl: environment.apiUrlv041_R1g},
-    { name: 'v0.041-R1f', apiUrl: environment.apiUrlv041_R1f},
-    { name: 'v0.041-R1e', apiUrl: environment.apiUrlv041_R1e},
-    { name: 'v0.042', apiUrl: environment.apiUrlv042},
-    { name: 'v0.041', apiUrl: environment.apiUrlv041},
-    { name: 'v0.041-R1a', apiUrl: environment.apiUrlv041_R1a},
-    { name: 'v0.041-R1b', apiUrl: environment.apiUrlv041_R1b},
-    { name: 'v0.041-R1c', apiUrl: environment.apiUrlv041_R1c},
-    { name: 'v0.041-R1d', apiUrl: environment.apiUrlv041_R1d},
-    { name: 'v0.04', apiUrl: environment.apiUrlv04}
+    { name: 'g/20/16/5e-5', apiUrl: environment.apiUrld_g_20_16_5e5}
   ]
   selectedModel = this.modelOptions[0]; //default to first model
 
