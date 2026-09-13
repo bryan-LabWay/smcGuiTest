@@ -38,6 +38,7 @@ const apiUrl_g_20_12_3_6e4 = process.env.API_URL_G_20_12_3_6e_4;
 const apiUrl_g_20_10_3_6e4_sub = process.env.API_URL_G_20_10_3_6e_4_SUB;
 const apiUrl_g_20_20_4_e4_sub = process.env.API_URL_G_20_20_4_e_4_SUB;
 const apiUrl_g_20_30_4_4e4_sub = process.env.API_URL_G_20_30_4_4e_4_SUB;
+const apiUrl_g_20_10_3_6e4_sub_70b = process.env.API_URL_G_20_10_3_6e_4_SUB_70B;
 
 
 // Build the content of environment.prod.ts
@@ -76,6 +77,7 @@ const envFileContent = `export const environment = {
   apiUrld_g_20_10_3_6e4_sub: '${apiUrl_g_20_10_3_6e4_sub}',
   apiUrld_g_20_20_4_e4_sub: '${apiUrl_g_20_20_4_e4_sub}',
   apiUrld_g_20_30_4_4e4_sub: '${apiUrl_g_20_30_4_4e4_sub}',
+  apiUrld_g_20_10_3_6e4_sub_70b: '${apiUrl_g_20_10_3_6e4_sub_70b}',
 };
 `;
 
